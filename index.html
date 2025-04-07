@@ -55,7 +55,18 @@
             color: red;
             font-size: 24px;
             margin-top: 20px;
-            display: none;
+        }
+        .profile-img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin: 15px auto;
+            border: 3px solid #ff0000;
+            object-fit: cover;
+        }
+        .follow-text {
+            font-weight: bold;
+            color: #333;
         }
     </style>
 </head>
@@ -69,6 +80,10 @@
     <div id="resultScreen" class="container" style="display: none;">
         <h1 class="evil-laugh">HAHAHAHAHAHA (kötü adam gülüşü)</h1>
         <p>Yaramaz Bir Kız Olduğunu Biliyordum! 😈</p>
+        
+        <!-- YOUR PROFILE PHOTO + FOLLOW MESSAGE -->
+        <img src="YOUR_PHOTO_URL" class="profile-img" alt="Alperen Gormus">
+        <p class="follow-text">Follow me on Instagram: @ALPERENGORMUS</p>
     </div>
 
     <audio id="winSound" src="https://assets.mixkit.co/sfx/preview/mixkit-achievement-bell-600.mp3" preload="auto"></audio>
@@ -81,7 +96,6 @@
         const resultScreen = document.getElementById('resultScreen');
 
         noBtn.addEventListener('mouseover', () => {
-            // Move the "NO" button randomly when hovered
             const x = Math.random() * (window.innerWidth - 100);
             const y = Math.random() * (window.innerHeight - 50);
             noBtn.style.position = 'absolute';
