@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Prank Mini-Game</title>
+    <title>Prank Game</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -21,7 +21,6 @@
         h1 {
             font-size: 20px;
             margin-bottom: 20px;
-            color: #ff0000;
         }
         .btn {
             padding: 10px 20px;
@@ -52,13 +51,24 @@
             0% { transform: scale(1); opacity: 1; }
             100% { transform: scale(20); opacity: 0; }
         }
+        .evil-laugh {
+            color: red;
+            font-size: 24px;
+            margin-top: 20px;
+            display: none;
+        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>HAHAHAHAHAHA (kötü adam gülüşü)<br>Yaramaz Bir Kız Olduğunu Biliyordum! 😈</h1>
-        <button id="yes" class="btn">EVET</button>
-        <button id="no" class="btn">HAYIR</button>
+    <div class="container" id="questionScreen">
+        <h1>Send Nudes? 😏</h1>
+        <button id="yes" class="btn">YES</button>
+        <button id="no" class="btn">NO</button>
+    </div>
+
+    <div id="resultScreen" class="container" style="display: none;">
+        <h1 class="evil-laugh">HAHAHAHAHAHA (kötü adam gülüşü)</h1>
+        <p>Yaramaz Bir Kız Olduğunu Biliyordum! 😈</p>
     </div>
 
     <audio id="winSound" src="https://assets.mixkit.co/sfx/preview/mixkit-achievement-bell-600.mp3" preload="auto"></audio>
@@ -67,6 +77,8 @@
         const noBtn = document.getElementById('no');
         const yesBtn = document.getElementById('yes');
         const winSound = document.getElementById('winSound');
+        const questionScreen = document.getElementById('questionScreen');
+        const resultScreen = document.getElementById('resultScreen');
 
         noBtn.addEventListener('mouseover', () => {
             // Move the "NO" button randomly when hovered
@@ -79,7 +91,10 @@
 
         yesBtn.addEventListener('click', () => {
             winSound.play();
-            // Create fireworks for 3 seconds
+            questionScreen.style.display = 'none';
+            resultScreen.style.display = 'block';
+            
+            // Fireworks for 3 seconds
             const fireworksInterval = setInterval(createFirework, 100);
             setTimeout(() => clearInterval(fireworksInterval), 3000);
         });
