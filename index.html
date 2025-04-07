@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Impossible Choice Game</title>
+    <title>Prank Mini-Game</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             text-align: center;
             background-color: #f0f0f0;
             padding-top: 50px;
+            overflow: hidden;
         }
         .container {
             margin: 0 auto;
@@ -20,6 +21,7 @@
         h1 {
             font-size: 20px;
             margin-bottom: 20px;
+            color: #ff0000;
         }
         .btn {
             padding: 10px 20px;
@@ -39,12 +41,12 @@
             position: relative;
         }
         .firework {
-            position: fixed;
+            position: absolute;
             width: 5px;
             height: 5px;
-            background-color: #ff0;
             border-radius: 50%;
-            animation: explode 1s ease-out;
+            pointer-events: none;
+            animation: explode 1.5s ease-out forwards;
         }
         @keyframes explode {
             0% { transform: scale(1); opacity: 1; }
@@ -54,9 +56,9 @@
 </head>
 <body>
     <div class="container">
-        <h1>Send Nudes?  🥺 ❤️ 🥺 </h1>
-        <button id="yes" class="btn">YES</button>
-        <button id="no" class="btn">NO</button>
+        <h1>HAHAHAHAHAHA (kötü adam gülüşü)<br>Yaramaz Bir Kız Olduğunu Biliyordum! 😈</h1>
+        <button id="yes" class="btn">EVET</button>
+        <button id="no" class="btn">HAYIR</button>
     </div>
 
     <audio id="winSound" src="https://assets.mixkit.co/sfx/preview/mixkit-achievement-bell-600.mp3" preload="auto"></audio>
@@ -77,21 +79,20 @@
 
         yesBtn.addEventListener('click', () => {
             winSound.play();
-            // Create fireworks
-            for (let i = 0; i < 50; i++) {
-                createFirework();
-            }
-            alert("You chose wisely! 🎉");
+            // Create fireworks for 3 seconds
+            const fireworksInterval = setInterval(createFirework, 100);
+            setTimeout(() => clearInterval(fireworksInterval), 3000);
         });
 
         function createFirework() {
+            const colors = ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff', '#00ffff'];
             const firework = document.createElement('div');
             firework.className = 'firework';
             firework.style.left = Math.random() * window.innerWidth + 'px';
             firework.style.top = Math.random() * window.innerHeight + 'px';
-            firework.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+            firework.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
             document.body.appendChild(firework);
-            setTimeout(() => firework.remove(), 1000);
+            setTimeout(() => firework.remove(), 1500);
         }
     </script>
 </body>
