@@ -2,33 +2,40 @@
 <html>
 <head>
     <title>Prank Game</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         body {
             font-family: Arial, sans-serif;
             text-align: center;
             background-color: #f0f0f0;
-            padding-top: 50px;
-            overflow: hidden;
+            padding: 20px;
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
         .container {
-            margin: 0 auto;
-            width: 300px;
+            width: 90%;
+            max-width: 400px;
             background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
         }
         h1 {
-            font-size: 20px;
-            margin-bottom: 20px;
+            font-size: 24px;
+            margin-bottom: 25px;
+            word-wrap: break-word;
         }
         .btn {
-            padding: 10px 20px;
-            margin: 10px;
-            font-size: 16px;
+            padding: 15px 30px;
+            margin: 15px;
+            font-size: 18px;
             cursor: pointer;
             border: none;
-            border-radius: 5px;
+            border-radius: 10px;
+            width: 120px;
         }
         #yes {
             background-color: #4CAF50;
@@ -41,8 +48,8 @@
         }
         .firework {
             position: absolute;
-            width: 5px;
-            height: 5px;
+            width: 6px;
+            height: 6px;
             border-radius: 50%;
             pointer-events: none;
             animation: explode 1.5s ease-out forwards;
@@ -53,47 +60,53 @@
         }
         .evil-laugh {
             color: red;
-            font-size: 24px;
-            margin-top: 20px;
+            font-size: 28px;
+            margin: 20px 0;
+            line-height: 1.3;
         }
         .profile-img {
-            width: 100px;
-            height: 100px;
+            width: 120px;
+            height: 120px;
             border-radius: 50%;
-            margin: 15px auto;
+            margin: 20px auto;
             border: 3px solid #ff0000;
             object-fit: cover;
         }
         .follow-text {
             font-weight: bold;
+            font-size: 18px;
             color: #333;
+            margin: 15px 0;
+        }
+        .button-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        @media (max-width: 480px) {
+            h1 { font-size: 22px; }
+            .btn { padding: 12px 25px; font-size: 16px; }
+            .evil-laugh { font-size: 24px; }
         }
     </style>
 </head>
 <body>
     <div class="container" id="questionScreen">
         <h1>Send Nudes? 😏</h1>
-        <button id="yes" class="btn">YES</button>
-        <button id="no" class="btn">NO</button>
+        <div class="button-container">
+            <button id="yes" class="btn">YES</button>
+            <button id="no" class="btn">NO</button>
+        </div>
     </div>
 
     <div id="resultScreen" class="container" style="display: none;">
-        <h1 class="evil-laugh">HAHAHAHAHAHA (kötü adam gülüşü)</h1>
-        <p>Yaramaz Bir Kız Olduğunu Biliyordum! 😈</p>
+        <h1 class="evil-laugh">HAHAHAHAHAHA<br>(kötü adam gülüşü)</h1>
+        <p style="font-size: 20px;">Yaramaz Bir Kız Olduğunu Biliyordum! 😈</p>
         
-        <!-- YOUR PROFILE PHOTO + FOLLOW MESSAGE -->
-<img 
-  src="https://Leihtren.github.io/ihtiyac/profil_QR.jpg"
-  alt="Alperen Gormus" 
-  style="
-    width: 300px; 
-    height: 300px; 
-    border-radius: 50%; 
-    object-fit: cover; 
-    border: 3px solid red;
-  "
->
-
+        <!-- Replace with your image URL -->
+        <img src="https://github.com/Leihtren/ihtiyac/blob/main/profil_QR.jpg?raw=true"
+        <p class="follow-text">Follow me: @ALPERENGORMUS</p>
     </div>
 
     <audio id="winSound" src="https://assets.mixkit.co/sfx/preview/mixkit-achievement-bell-600.mp3" preload="auto"></audio>
@@ -106,8 +119,8 @@
         const resultScreen = document.getElementById('resultScreen');
 
         noBtn.addEventListener('mouseover', () => {
-            const x = Math.random() * (window.innerWidth - 100);
-            const y = Math.random() * (window.innerHeight - 50);
+            const x = Math.random() * (window.innerWidth - 150);
+            const y = Math.random() * (window.innerHeight - 100);
             noBtn.style.position = 'absolute';
             noBtn.style.left = x + 'px';
             noBtn.style.top = y + 'px';
@@ -118,8 +131,7 @@
             questionScreen.style.display = 'none';
             resultScreen.style.display = 'block';
             
-            // Fireworks for 3 seconds
-            const fireworksInterval = setInterval(createFirework, 100);
+            const fireworksInterval = setInterval(createFirework, 80);
             setTimeout(() => clearInterval(fireworksInterval), 3000);
         });
 
